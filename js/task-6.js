@@ -6,26 +6,28 @@ const boxesEl = document.getElementById("boxes");
 createBtn.addEventListener("click", createBoxes);
 
 function createBoxes() {
-  const amount = inputEl.value;
-  if (isNaN(amount) && (amount < 1 || amount > 100)) {
+  const amount = Number(inputEl.value);
+  if (isNaN(amount) || amount < 1 || amount > 100) {
     return;
   }
 
-  let box = "";
+  destroyBtn.addEventListener("click", destroyBoxes);
+
+  function destroyBoxes() {
+    boxesEl.innerHTML = "";
+  }
+
   for (let i = 0; i < amount; i++) {
     const size = 30 + i * 10;
     const color = getRandomHexColor();
-    box += `<div style="width: ${size}px; height: ${size}px; background-color: ${color}"></div>`;
+    const boxEl = document.createElement("div");
+    boxEl.style.width = `${size}px`;
+    boxEl.style.height = `${size}px`;
+    boxEl.style.backgroundColor = color;
+    boxesEl.appendChild(boxEl);
   }
-  boxesEl.innerHTML = box;
 
   inputEl.value = "";
-}
-
-destroyBtn.addEventListener("click", destroyBoxes);
-
-function destroyBoxes() {
-  boxesEl.innerHTML = "";
 }
 
 function getRandomHexColor() {
