@@ -7,8 +7,8 @@ createBtn.addEventListener("click", createBoxes);
 
 function createBoxes() {
   const amount = inputEl.value;
-  if (isNaN(amount) || (amount < 1 && amount > 100)) {
-    boxesEl.innerHTML = "";
+  if (isNaN(amount) && (amount < 1 || amount > 100)) {
+    return;
   }
 
   let box = "";
