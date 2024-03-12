@@ -11,12 +11,6 @@ function createBoxes() {
     return;
   }
 
-  destroyBtn.addEventListener("click", destroyBoxes);
-
-  function destroyBoxes() {
-    boxesEl.innerHTML = "";
-  }
-
   for (let i = 0; i < amount; i++) {
     const size = 30 + i * 10;
     const color = getRandomHexColor();
@@ -34,4 +28,10 @@ function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
     .toString(16)
     .padStart(6, "0")}`;
+}
+
+destroyBtn.addEventListener("click", destroyBoxes);
+
+function destroyBoxes() {
+  boxesEl.innerHTML = "";
 }
